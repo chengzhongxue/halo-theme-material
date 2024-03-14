@@ -4,7 +4,8 @@
             <th:block th:each="dropdown,iterStat : ${theme.config.sidebar.dropdown}">
                 <li>
                     <a th:href="${dropdown.link}" target="_blank" th:title="${dropdown.title}">
-                        <img class="material-icons sidebar-material-icons sidebar-indent-left1pc-element" th:src="${dropdown.icon}">
+                        <img class="material-icons sidebar-material-icons sidebar-indent-left1pc-element"  th:src="${dropdown.icon}"
+                             style="position: relative;line-height: 1;margin-right: 2pc;width: 24px;height: 24px;top: -2px;" >
                         [[${dropdown.title}]]
                     </a>
                 </li>

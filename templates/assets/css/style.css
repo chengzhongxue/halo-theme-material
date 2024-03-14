@@ -2113,6 +2113,14 @@ p {
     border-left: 4px solid transparent
 }
 
+#settings-dropdown.dropdown-menu.open {
+    display: block;
+}
+
+.dropdown.open>.dropdown-menu{
+    display: block;
+}
+
 .dropdown-menu {
     display: none
 }
