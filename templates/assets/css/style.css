@@ -473,9 +473,10 @@ p {
 #post-content pre code,
 #post-content pre tt {
     margin: 0;
-    padding: 0;
+    padding: 1em;
     background-color: transparent;
-    border: none
+    border: none;
+
 }
 
 .post-toc-wrap::-webkit-scrollbar {

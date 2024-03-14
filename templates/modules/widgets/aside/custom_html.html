@@ -1,0 +1,11 @@
+<th:block th:fragment="custom_html(widget_data)">
+    <div class="amos-card">
+        <div class="amos-card-title">
+            <div class="dot" style="background:#3b76fb;"></div>
+            <div th:text="${widget_data.custom_html.title}"></div>
+        </div>
+        <div class="amos-card-content">
+            <th:block th:utext="${widget_data.custom_html.html}"></th:block>
+        </div>
+    </div>
+</th:block>

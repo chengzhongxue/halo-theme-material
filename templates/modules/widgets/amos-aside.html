@@ -1,74 +1,11 @@
-<div class="amos-aside" style="position: relative;">
-    <div class="amos-card amos-hello-main">
-        <div class="amos-card-img"></div>
-        <div class="amos-card-bg"></div>
-        <div class="amos-card-bg-content">
-            <div class="amos-card-title">
-                <div class="hello-title">
-                    <div class="hand-hello">👋</div>&nbsp;你好朋友~
-                </div>
-            </div>
-            <div class="amos-card-content">
-                <th:block th:utext="${theme.config.right_sidebar.profile}"></th:block>
-            </div>
-        </div>
-    </div>
-    <div style="display: none; width: 0px; height: 0px; margin: 0px; float: none;"></div>
-    <div class="amos-sticky">
-        <div class="amos-card">
-            <div class="amos-card-title">
-                <div class="dot status-processing" style="background:#3b76fb;"></div>
-                <div>最新交流</div>
-            </div>
-            <div id="amos-waline-recent" style="display: block;">
-                <ul class="waline-widget-list">
-                    <th:block th:each="comment,iterStat : ${commentFinder.list(null, 1, 8)}">
-                        <li class="waline-widget-item" th:with="page = ${comment.spec.subjectRef.kind == 'Post' ? postFinder.getByName(comment.spec.subjectRef.name) :
-                        comment.spec.subjectRef.kind == 'SinglePage' && not #strings.contains('photos,links,moments', comment.spec.subjectRef.name) ? singlePageFinder.getByName(comment.spec.subjectRef.name) : null},
-                        url = ${page == null? '/' : page.status.permalink + '#comment-' + comment.metadata.name}">
-                            <a class="amos-recent-list" th:href="${url}">
-                                <img class="recent-avatar"
-                                    th:with=" img =${#strings.isEmpty(comment.owner.avatar)?'https://cravatar.cn/avatar/?d=mp':comment.owner.avatar}"
-                                    th:src="${img}">
-                                [[${comment.owner.displayName}]]：
-                            </a>
-                            <div class="recent-content">
-                                <th:block th:text="${comment.spec.content}"></th:block>
-                            </div>
-                        </li>
-                    </th:block>
-
-                </ul>
-            </div>
-
-            <div class="amos-recent-error"></div>
-        </div>
-        <div class="amos-card">
-            <div class="amos-card-title">
-                <div class="dot" style="background:#c17aff;"></div>
-                <div>博客概况</div>
-            </div>
-            <div class="amos-card-content" th:with="stats = ${siteStatsFinder.getStats()}">
-                <div>
-                    <div style="display: none;"><span id="busuanzi_container_site_uv"
-                            style="display: inline;"></span><span id="busuanzi_container_site_pv"
-                            style="display: inline;"></span></div>
-                    <div class="amos-survey-list" id="busuanzi_container_site_uv">
-                        <div>文章：</div>
-                        <div>
-                            <span id="busuanzi_value_site_uv" th:text="${stats.post}"></span>
-                        </div>
-                    </div>
-                    <div class="amos-survey-list" id="busuanzi_container_site_pv">
-                        <div>访问：</div>
-                        <div><span id="busuanzi_value_site_pv" th:text="${stats.visit}"></span> 次</div>
-                    </div>
-                    <div class="amos-survey-list" id="busuanzi_container_site_pv">
-                        <div>共度过：</div>
-                        <div><span id="runtime_span"></span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="amos-aside" style="position: relative;"
+    th:if="${not #lists.isEmpty(theme.config.right_sidebar.amos_aside)}">
+    <th:block th:each="widget_data,iterStat : ${theme.config.right_sidebar.amos_aside}">
+        <th:block th:unless="${widget_data.widget=='custom_html'}">
+            <th:block th:replace="~{'modules/widgets/aside/'+ ${widget_data.widget}}" />
+        </th:block>
+        <th:block th:if="${widget_data.widget=='custom_html'}">
+            <th:block th:replace="~{modules/widgets/aside/custom_html :: custom_html(${widget_data})}" />
+        </th:block>
+    </th:block>
 </div>

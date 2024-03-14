@@ -3,12 +3,12 @@ kind: Theme
 metadata:
   name: theme-material
 spec:
-  displayName: TMaterial 
+  displayName: Material 
   author:
     name: 困困鱼
     website: "https://github.com/chengzhongxue"
   description: 移植自hexo同名主题material，一款优秀的个人博客模板。
-  logo: "https://halo.run/logo"
+  logo: "https://api.minio.yyds.pink/moony/files/2024/03/material-logo-qscjjpdz.png"
   website: "https://moony.la"
   repo: "https://github.com/chengzhongxue/halo-theme-material"
   settingName: "theme-material-setting"

@@ -39,7 +39,6 @@
             <script>SmoothScroll({ stepSize: 100, animationTime: 500 })
             </script>
             </script>
-            <script th:src="@{/assets/js/prism/prism_v3.js}" async=""></script>
             <script type="text/javascript" th:if="${not #strings.isEmpty(theme.config.custom.code_js)}"
                 th:utext="${theme.config.custom.code_js}"></script>
             <th:block th:if="${not #strings.isEmpty(theme.config.custom.footer_html)}"

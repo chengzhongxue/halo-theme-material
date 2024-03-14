@@ -151,6 +151,44 @@ spec:
     - group: right_sidebar
       label: 侧边栏
       formSchema:
+        - $formkit: repeater
+          name: amos_aside
+          id: amos_aside
+          label: 小工具栏
+          value:
+            - widget: "profile"
+            - widget: "cst_widget_comment"
+            - widget: "widget_tongji"
+          children:
+            - $formkit: select
+              name: widget
+              id: widget
+              key: widget
+              label: "小工具"
+              options:
+                - value: "profile"
+                  label: 个人卡片
+                - value: "cst_widget_comment"
+                  label: 最新评论
+                - value: "widget_tongji"
+                  label: 站点统计
+                - value: "custom_html"
+                  label: 自定义
+            - $formkit: group
+              name: custom_html
+              if: $value.widget == 'custom_html'
+              key: custom_html
+              label: 自定义内容
+              children:
+                - $formkit: text
+                  name: title
+                  label: 标题
+                - $formkit: code
+                  name: html
+                  label: 内容
+                  height: 200px
+                  help: 支持html语法
+                  language: html
         - $formkit: code
           name: profile
           label: 个人卡片

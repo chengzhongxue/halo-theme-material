@@ -1,0 +1,26 @@
+<div class="amos-card">
+    <div class="amos-card-title">
+        <div class="dot" style="background:#c17aff;"></div>
+        <div>博客概况</div>
+    </div>
+    <div class="amos-card-content" th:with="stats = ${siteStatsFinder.getStats()}">
+        <div>
+            <div style="display: none;"><span id="busuanzi_container_site_uv" style="display: inline;"></span><span
+                    id="busuanzi_container_site_pv" style="display: inline;"></span></div>
+            <div class="amos-survey-list" id="busuanzi_container_site_uv">
+                <div>文章：</div>
+                <div>
+                    <span id="busuanzi_value_site_uv" th:text="${stats.post}"></span>
+                </div>
+            </div>
+            <div class="amos-survey-list" id="busuanzi_container_site_pv">
+                <div>访问：</div>
+                <div><span id="busuanzi_value_site_pv" th:text="${stats.visit}"></span> 次</div>
+            </div>
+            <div class="amos-survey-list" id="busuanzi_container_site_pv">
+                <div>共度过：</div>
+                <div><span id="runtime_span"></span></div>
+            </div>
+        </div>
+    </div>
+</div>

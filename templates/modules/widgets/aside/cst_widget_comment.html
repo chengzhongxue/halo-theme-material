@@ -1,0 +1,28 @@
+<div class="amos-card">
+    <div class="amos-card-title">
+        <div class="dot status-processing" style="background:#3b76fb;"></div>
+        <div>最新交流</div>
+    </div>
+    <div id="amos-waline-recent" style="display: block;">
+        <ul class="waline-widget-list">
+            <th:block th:each="comment,iterStat : ${commentFinder.list(null, 1, 8)}">
+                <li class="waline-widget-item" th:with="page = ${comment.spec.subjectRef.kind == 'Post' ? postFinder.getByName(comment.spec.subjectRef.name) :
+                comment.spec.subjectRef.kind == 'SinglePage' && not #strings.contains('photos,links,moments', comment.spec.subjectRef.name) ? singlePageFinder.getByName(comment.spec.subjectRef.name) : null},
+                url = ${page == null? '/' : page.status.permalink + '#comment-' + comment.metadata.name}">
+                    <a class="amos-recent-list" th:href="${url}">
+                        <img class="recent-avatar"
+                            th:with=" img =${#strings.isEmpty(comment.owner.avatar)?'https://cravatar.cn/avatar/?d=mp':comment.owner.avatar}"
+                            th:src="${img}">
+                        [[${comment.owner.displayName}]]：
+                    </a>
+                    <div class="recent-content">
+                        <th:block th:text="${comment.spec.content}"></th:block>
+                    </div>
+                </li>
+            </th:block>
+
+        </ul>
+    </div>
+
+    <div class="amos-recent-error"></div>
+</div>

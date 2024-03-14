@@ -33,7 +33,6 @@ material 主题支持以下 Halo 插件：
 
 - [X] 友情链接（/links）：https://halo.run/store/apps/app-hfbQg
 - [X] 图库（/photos）：https://halo.run/store/apps/app-BmQJW
-- [] 瞬间（/moments）：https://halo.run/store/apps/app-SnwWD  
 
 为了获得更好的体验，你还可以安装以下插件（如果需要）：
 
@@ -51,6 +50,18 @@ material 主题支持以下 Halo 插件：
 - [x] [友情链接](https://github.com/halo-sigs/plugin-links)
 - [x] 其他功能
 
+### TODO
+- [ ] 细节优化
+- [ ] 瞬间（/moments）：https://halo.run/store/apps/app-SnwWD  
+
+### 如何在页面支持图片灯箱？
+安装 [lightgallery.js](https://halo.run/store/apps/app-OoggD) 灯箱 插件的最新版本，然后进入插件设置，配置以下页面匹配规则：
+
+| 路径匹配 | 匹配区域 |
+| --- | --- |
+| /archives/** | #post-content | 
+
+
 
 ### 🏭 贡献
 
@@ -62,6 +73,14 @@ material 主题支持以下 Halo 插件：
 - 推 `pr`
 
 <br>
+
+### 💬 讨论
+![image](https://api.minio.yyds.pink/moony/files/2024/03/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240314171529-qugslntf.jpg)
+
+
+### 赞助
+如果 material 对你有帮助，欢迎[赞助我](https://afdian.net/a/moony_la)，感谢以下赞助者对 material 项目的支持：
+
 
 ### 🙆‍♂️ 感谢
 
