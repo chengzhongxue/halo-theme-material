@@ -114,9 +114,9 @@ spec:
         - $formkit: repeater
           name: dropdown
           value:
-            - title: new-post
+            - title: 困困鱼
               icon: "/themes/theme-material/assets/img/footer/footer_github-fill.svg"
-              link: https://github.com/AmosHuKe
+              link: github.com/chengzhongxue
           children:
             - $formkit: text
               name: title  
@@ -242,6 +242,7 @@ spec:
           height: 300px
           label: 顶部显示内容
           language: html
+          value: <div class="md-links-grid"><div><p class="links-tips">🎗️ Tips：多多交流，先友后链呐~<br>（先成为朋友，再交换链接，否则可能会狠心拒绝😭）</p><p class="links-tips">🤯 我的信息<br>名称：困困鱼 / moony.la<br>地址：https://moony.la<br>头像：https://moony.la/upload/logo.png</p></div><div class="amos-links-scene-container"><div id="amos-links-scene" data-hover-only="true" data-relative-input="true" data-friction-x="0.02" data-friction-y="0.02" style="padding:48px;transform:translate3d(0,0,0) rotate(.0001deg);transform-style:preserve-3d;backface-visibility:hidden;position:relative;pointer-events:none"><div data-depth="-2" style="transform:translate3d(0,0,0);transform-style:preserve-3d;backface-visibility:hidden;position:relative;display:block;left:0;top:0"><img class="links-tips-img" src="https://kunkunyu.com/upload/Partying%20Face.png"></div></div></div></div>
 
     - group: custom
       label: 扩展设置
