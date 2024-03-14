@@ -1,17 +1,62 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1>标签</h1>
-    <ul>
-      <li th:each="tag : ${tags}">
-        <a
-          th:href="@{${tag.status.permalink}}"
-          th:text="${tag.spec.displayName}"
-        ></a>
-      </li>
-    </ul>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = ~{::head},content = ~{::content},_title = '标签')}">
+<th:block th:fragment="head">
+  <meta property="og:url" th:content="${site.url+'/tags'}">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" th:content="${site_title}">
+  <meta property="og:image" th:content="${site.favicon}">
+  <meta property="og:description" th:content="${site_title}">
+  <link rel="canonical" th:href="${site.url+'/tags'}">
+</th:block>
+<th:block th:fragment="content">
+  <style>
+    #bottom {
+      position: relative;
+    }
+
+    @media screen and (max-width:480px) {
+      .material-tagscloud {
+        margin: 6em 2em 0;
+      }
+    }
+
+    .material-tagscloud a {
+      text-decoration: none;
+      padding: 1px 9px;
+      margin: 9px 1px;
+      line-height: 40px;
+      white-space: nowrap;
+      transition: .6s;
+      opacity: .85;
+      border-radius: 16px;
+    }
+
+    .material-tagscloud a:hover {
+      transition: .6s;
+      opacity: 1;
+      background: #FFFFFF;
+      box-shadow: 0 0 20px 0 rgba(43, 86, 112, .1);
+    }
+  </style>
+  <div class=" material-tagscloud">
+    <div class="material-post mdl-grid">
+      <a th:each="tagItem : ${tags}" th:href="@{${tagItem.status.permalink}}" style="font-size: 18.71px; color: #757575"
+        th:text="${tagItem.spec.displayName}"></a>
+
+    </div>
+  </div>
+  <script type="text/javascript" id="page-tagcloud-script">
+    var adjustFooter = function () {
+      if (($('#bottom').offset().top + $('#bottom').outerHeight()) < $(window).height()) {
+        var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
+        $('#bottom').css('bottom', '-' + footerBottom + 'px');
+      }
+    };
+
+    $(document).ready(function () {
+      adjustFooter();
+    });
+  </script>
+</th:block>
+
 </html>

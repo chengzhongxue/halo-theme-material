@@ -1,0 +1,17 @@
+<div class="sidebar-header header-cover" th:style="|background-image: url(${theme.config.basics.sidebar_header});|">
+    <div class="top-bar"></div>
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+    <div class="sidebar-image">
+        <img th:src="${theme.config.basics.avatar}" th:alt="|${theme.config.basics.author}'s avatar|">
+    </div>
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        [[${theme.config.basics.author}]]
+        <b class="caret"></b>
+    </a>
+</div>

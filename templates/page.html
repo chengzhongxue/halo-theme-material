@@ -1,10 +1,214 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1 th:text="${singlePage.spec.title}"></h1>
-    <article th:utext="${singlePage.content.content}"></article>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = ~{::head},content = ~{::content},_title = ${singlePage.spec.title})}">
+<th:block th:fragment="head">
+  <meta property="og:url" th:content="${site.url+singlePage.status.permalink}">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" th:content="${site_title}">
+  <meta property="og:image" th:content="${site.favicon}">
+  <meta property="og:description" th:content="${site_title}">
+  <link rel="canonical" th:href="${site.url+singlePage.status.permalink}">
+</th:block>
+<th:block th:fragment="content">
+  <div class="material-post_container">
+    <div class="material-post mdl-grid">
+      <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50"
+          th:style="|background-image:url(${singlePage.spec.cover})|">
+        </div>
+        <h2 class="article-headline-p" style="margin: 48px 18px 48px 18px; text-align: center;"
+          th:text="${singlePage.spec.title}">
+        </h2>
+        <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+          <div id="author-avatar">
+            <img th:src="${singlePage.owner.avatar}" width="44px" height="44px" alt="Author Avatar">
+          </div>
+          <div>
+            <strong style="font-size: 14px; font-weight: 600; color: #303236;"
+              th:text="${singlePage.owner.displayName}"></strong>
+            <div style="font-size: 12px; font-weight: 400; color: #74858F;">
+              <div>发表：[[${#dates.format(singlePage.spec.publishTime,'yyyy-MM-dd HH:mm:ss')}]]</div>
+              <div>修改：[[${#dates.format(singlePage.status.lastModifyTime,'yyyy-MM-dd HH:mm:ss')}]]</div>
+            </div>
+          </div>
+          <div class="section-spacer"></div>
+          <button id="article-fuctions-share-button"
+            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <img class="material-icons" th:src="@{/assets/img/icon/blog_more-vert.svg}">
+            <span class="visuallyhidden">share</span></button>
+          <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect "
+            for="article-fuctions-share-button">
+            <a th:if="${theme.config.sns_share.weibo}" class="post_share-link"
+              th:href="|http://service.weibo.com/share/share.php?appkey=&amp;title=${singlePage.spec.title}&amp;url=${site.url+singlePage.status.permalink}&amp;pic=${site.favicon}&amp;searchPic=false&amp;style=simple|"
+              target="_blank">
+              <li class="mdl-menu__item " tabindex="-1" data-upgraded=",MaterialRipple">
+                分享到微博
+                <span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+              </li>
+            </a>
+            <a th:if="${theme.config.sns_share.twitter}" class="post_share-link"
+              th:href="|https://twitter.com/intent/tweet?text=${singlePage.spec.title}&url=${site.url+singlePage.status.permalink}&via=${singlePage.owner.displayName}|"
+              target="_blank">
+              <li class="mdl-menu__item">
+                分享到 twitter
+              </li>
+            </a>
+            <a th:if="${theme.config.sns_share.facebook}" class="post_share-link"
+              th:href="|https://www.facebook.com/sharer/sharer.php?u=${site.url+singlePage.status.permalink}|"
+              target="_blank">
+              <li class="mdl-menu__item">
+                分享到 facebook
+              </li>
+            </a>
+            <a th:if="${theme.config.sns_share.qq}" class="post_share-link"
+              th:href="|http://connect.qq.com/widget/shareqq/index.html?site=${singlePage.owner.displayName}&amp;title=${singlePage.spec.title}&amp;summary=${site.title}&amp;pics=${site.favicon}&amp;url=${site.url+singlePage.status.permalink}|"
+              target="_blank">
+              <li class="mdl-menu__item" tabindex="-1" data-upgraded=",MaterialRipple">
+                分享到 QQ
+                <span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span>
+              </li>
+            </a>
+            <a th:if="${theme.config.sns_share.telegram}" class="post_share-link"
+              th:href="|https://telegram.me/share/url?url=${site.url+singlePage.status.permalink}&text=${singlePage.spec.title}|"
+              target="_blank">
+              <li class="mdl-menu__item">
+                分享到 telegram
+              </li>
+            </a>
+          </ul>
+        </div>
+        <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade"
+          style="color: #31353A !important;" th:utext="${singlePage.content.content}"></div>
+        <section style="padding:12px; padding-bottom:150px; margin-top:32px;">
+          <div style="margin:0 .55em; margin-bottom:24px;">
+            <div style="font-size:24px;"><img th:src="@{/assets/img/icon/blog_message-emoji.svg}" width="36px"> 评论</div>
+          </div>
+          <th:block
+            th:replace="~{modules/widgets/halo-comment :: halo-comment(name=${singlePage.metadata.name},kind='singlePage',group='content.halo.run')}">
+          </th:block>
+        </section>
+      </div>
+      <style>
+        :root {
+          --waline-badge-color: #23303F;
+          --waline-theme-color: #0c0713;
+          --waline-active-color: #000000;
+          --waline-text-color: #444;
+          --waline-bg-color: rgba(234, 235, 230, .3);
+          --waline-bg-color-light: rgba(234, 235, 230, .2);
+          --waline-bg-color-hover: rgba(234, 235, 230, .2);
+          --waline-border-color: #ddd;
+          --waline-disable-bg-color: #f8f8f8;
+          --waline-disable-color: #F1F5F9;
+          --waline-code-bg-color: #282c34;
+          --waline-bq-color: #F1F5F9;
+          --waline-info-bg-color: #f8f8f8;
+          --waline-info-color: #999;
+          --waline-info-font-size: 0.625em;
+          --waline-border: 1px solid var(--waline-border-color);
+          --waline-avatar-radius: 50%;
+          --waline-box-shadow: none;
+        }
+
+        #amosblogwaline .wl-header {
+          border-bottom: none;
+          gap: 12px;
+        }
+
+        #amosblogwaline .wl-panel {
+          padding: 12px;
+          border-radius: 12px;
+          border: none;
+        }
+
+        #amosblogwaline .wl-header label {
+          font-size: 0.95em;
+        }
+
+        #amosblogwaline .wl-header input {
+          font-size: 0.925em;
+          padding: 0.5em 1em;
+          border-radius: 12px;
+        }
+
+        #amosblogwaline .wl-header .wl-header-item {
+          row-gap: 12px;
+          border: 2px solid rgba(0, 0, 0, 0);
+          border-radius: 12px;
+          transition: all .25s ease;
+        }
+
+        #amosblogwaline .wl-header .wl-header-item:focus-within {
+          border: 2px solid rgba(234, 235, 230, 1);
+          transition: all .25s ease;
+        }
+
+        @media (max-width:580px) {
+          #amosblogwaline .wl-header label {
+            text-align: left;
+          }
+        }
+
+        #amosblogwaline .wl-editor {
+          font-size: .975em;
+          padding: 6px;
+          width: calc(100% - 1em - 12px);
+          border-radius: 12px;
+          border: 2px solid rgba(0, 0, 0, 0);
+          transition: all .25s ease;
+        }
+
+        #amosblogwaline .wl-editor:focus-within {
+          border: 2px solid rgba(234, 235, 230, 1);
+          transition: all .25s ease;
+        }
+
+        #amosblogwaline .wl-footer .wl-actions a {
+          display: flex;
+        }
+
+        #amosblogwaline .wl-card {
+          margin-bottom: 12px;
+          border-bottom: none;
+        }
+
+        #amosblogwaline .wl-card .wl-quote {
+          border: none;
+        }
+
+        #amosblogwaline .wl-cards .wl-card .wl-card-item {
+          background: rgba(234, 235, 230, .2);
+          border-radius: 12px;
+          padding: 12px;
+          margin: 12px 0;
+        }
+
+        #amosblogwaline .wl-cards .wl-card .wl-head .wl-nick {
+          font-size: .975em;
+        }
+
+        #amosblogwaline .wl-emoji-popup {
+          background: #F4F4F1;
+        }
+
+        #amosblogwaline .wl-card .wl-head .wl-reply {
+          position: relative;
+          z-index: 1;
+        }
+
+        #amosblogwaline .wl-cards .wl-card-item .wl-user img {}
+
+        #amosblogwaline .wl-card .wl-badge {
+          padding: 0 0.6em;
+        }
+
+        #amosblogwaline code[class*=language-],
+        #amosblogwaline pre[class*=language-] {
+          text-shadow: none;
+        }
+      </style>
+      <script th:src="@{/assets/js/gallery/gallery.js}"></script>
+    </div>
+  </div>
+</th:block>
+
 </html>

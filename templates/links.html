@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = ~{::head},content = ~{::content},_title = '友链')}">
+<th:block th:fragment="head">
+  <meta property="og:url" th:content="${site.url+'/links'}">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" th:content="${site_title}">
+  <meta property="og:image" th:content="${site.favicon}">
+  <meta property="og:description" th:content="${site_title}">
+  <link rel="canonical" th:href="${site.url+'/links'}">
+</th:block>
+<th:block th:fragment="content">
+    <style>
+        .md-links {
+            min-height: calc(100% - 120px - 5pc - 6em);
+            overflow: auto;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 320px;
+        }
+
+        .md-links-tips {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 0 1.3pc;
+        }
+
+        @media screen and (min-width:680px) {
+            .md-links {
+                max-width: 640px;
+            }
+
+            .md-links-tips {
+                max-width: 640px;
+                padding-bottom: 96px;
+            }
+        }
+
+        @media screen and (min-width:1000px) {
+            .md-links {
+                max-width: 960px;
+                padding: 0 42px;
+            }
+
+            .md-links-tips {
+                max-width: 960px;
+                padding: 0 calc(42px + 24px);
+                padding-bottom: 96px;
+            }
+        }
+
+        @media screen and (min-width:1320px) {
+            .md-links {
+                max-width: 1280px;
+                padding: 0 60px;
+            }
+
+            .md-links-tips {
+                max-width: 1280px;
+                padding: 0 calc(60px + 24px);
+                padding-bottom: 96px;
+            }
+        }
+
+        @media screen and (min-width:1640px) {
+            .md-links {
+                max-width: 1600px;
+                padding: 0 78px;
+            }
+
+            .md-links-tips {
+                max-width: 1600px;
+                padding: 0 calc(78px + 24px);
+                padding-bottom: 96px;
+            }
+        }
+
+        @media screen and (max-width:480px) {
+            .md-links {
+                min-height: calc(100% - 200px - 5pc - 6em);
+                margin-top: 6em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .md-links-tips {
+                min-height: calc(100% - 200px - 5pc - 6em);
+                margin-top: 6em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .md-links-tips .links-tips {
+            background: #FFFFFF;
+            padding: 24px;
+            border-radius: 18px;
+            margin-bottom: 24px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .md-links .links-title {
+            margin-left: 24px;
+            margin-bottom: 64px;
+            color: #EDEFF3;
+            font-size: 72px;
+            font-weight: 900;
+            text-align: left;
+            text-shadow: #000 1px 0 0, #000 0 1px 0, #000 -1px 0 0, #000 0 -1px 0;
+        }
+
+        @media screen and (max-width:680px) {
+            .md-links .links-title {
+                margin-left: 0px;
+                margin-bottom: 12px;
+                font-size: 36px;
+            }
+        }
+
+        .md-links-grid {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .links-tips-img {
+            max-height: 320px;
+            margin: 24px;
+            margin-top: 0;
+            border-radius: 100%;
+            box-shadow: 20px 20px 100px #F7F5F7, -20px -20px 100px #F7F5F7;
+            filter: blur(12px);
+            opacity: 0.5;
+            transition: all 1s ease-in-out;
+        }
+
+        .amos-links-scene-container:hover .links-tips-img {
+            filter: blur(2px);
+            opacity: 0.8;
+            transition: all 1s ease-in-out;
+        }
+
+        @media screen and (max-width:1000px) {
+            .md-links-grid {
+                display: block;
+            }
+
+            .amos-links-scene-container {
+                display: none;
+            }
+        }
+
+        .md-links-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            top: 0;
+            background: #FFFFFF;
+            line-height: 15px;
+            margin: 24px 24px;
+            padding: 0 24px 24px 24px;
+            border-radius: 16px;
+            transition: all 0.45s;
+        }
+
+        .md-links-item:hover {
+            position: relative;
+            top: -4px;
+            box-shadow: 2px 8px 48px 4px #F0F4F9;
+            transition: all 0.25s;
+        }
+
+        .md-links a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #31353A;
+            font-weight: 100;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        .md-links-item a:hover {
+            cursor: pointer;
+        }
+
+        .md-links li {
+            width: 240px;
+            height: 276px;
+            float: left;
+            list-style: none;
+        }
+
+        .md-links-item .md-links-img {
+            width: 120px;
+            height: 120px;
+            margin: 24px 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            border-radius: 100%;
+        }
+
+        .md-links-title {
+            font-size: 20px;
+            line-height: 48px;
+            font-weight: 700;
+        }
+
+        .md-links-desc {
+            font-size: 12px;
+            line-height: 20px;
+            font-weight: 700;
+        }
+
+        #scheme-Paradox .mdl-mini-footer {
+            clear: left;
+        }
+
+        #bottom {
+            position: relative;
+        }
+    </style>
+    <div th:with="groups = ${linkFinder.groupBy()}">
+        <th:block th:if="${not #strings.isEmpty(theme.config.links.linksArticle)}"> 
+            <div class="md-links-tips">
+                <th:block th:utext="${theme.config.links.linksArticle}"></th:block>
+            </div>
+        </th:block>
+        <th:block th:each="group,iterStat : ${groups}">
+            <ul class="md-links">
+
+                <h3 class="links-title" th:text="${group.spec.displayName}"></h3>
+                <li class="md-links-item" th:each="link,iterStat : ${group.links}">
+                    <a th:href="${link.spec.url}" th::title="${link.spec.displayName}" target="_blank">
+                        <div class="md-links-img lazy" th:data-original="${link.spec.logo}"
+                            style="background-image: url(''); "></div>
+                        <div class="md-links-title" th:text="${link.spec.displayName}"></div>
+                        <div class="md-links-desc" th:text="${link.spec.description}"></div>
+                    </a>
+                </li>
+            </ul>
+        </th:block>
+
+    </div>
+    <script th:src="@{/assets/js/parallax/parallax.min.js}"></script>
+    <script>stopLoad(); let amosLinksScene = document.getElementById('amos-links-scene'); let amosLinksParallax = new Parallax(amosLinksScene);</script>
+    <script type="text/javascript" d="piage-links-script">
+        var adjustFooter = function () {
+            if (($('#bottom').offset().top + $('#bottom').outerHeight()) < $(window).height()) {
+                var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
+                $('#bottom').css('bottom', '-' + footerBottom + 'px');
+            }
+        };
+        $(document).ready(function () {
+            adjustFooter();
+        });
+    </script>
+</th:block>
+
+</html>

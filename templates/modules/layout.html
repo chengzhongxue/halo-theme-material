@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:fragment="html (head,content,_title)" style class="mdl-js"
+    th:with="site_title = ${not #strings.isEmpty(_title) ?  _title+' - '+site.title  :  #strings.isEmpty(site.subtitle) ? site.title :  site.title +' - ' +site.subtitle }">
+
+<head th:replace="~{modules/head :: head}"></head>
+
+<body id="scheme-Paradox" class>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/loading/loading.css}">
+    <script type="text/javascript">$(window).load(function () { $('body').addClass('amos-loaded'); }); function stopLoad() { $('body').addClass('amos-loaded'); }
+    </script>
+    <div id="amos-loader-wrapper">
+        <div id="docsInLarkWebviewLoadingIndicator" class="index-spinner ud__loading__lottie">
+            <svg class="ud__svg ud__svg-spin-loading" width="1em" height="1em" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="35" stroke="currentColor" stroke-width="11" stroke-linecap="round"
+                    stroke-miterlimit="10" fill="none"></circle>
+            </svg>
+        </div>
+        <div class="amos-loader-section"></div>
+    </div>
+    <div class="material-layout mdl-js-layout has-drawer is-upgraded">
+        <main class="material-layout__content" id="main">
+            <div id="top"></div>
+            <button class="MD-burger-icon sidebar-toggle">
+                <span id="MD-burger-id" class="MD-burger-layer"></span>
+            </button>
+
+            <th:block th:replace="${content}" />
+
+            <th:block th:replace="~{'modules/sidebar'}" />
+            <div id="back-to-top" class="toTop-wrap">
+                <a href="#top" class="toTop">
+                    <img class="material-icons" style="margin-top:8px;" th:src="@{/assets/img/icon/blog_top-i.svg}">
+                </a>
+            </div>
+            <th:block th:replace="~{'modules/footer'}" />
+            <script th:src="@{/assets/js/AOS/aos.js}"></script>
+            <script>AOS.init();</script>
+            <script th:src="@{/assets/js/SmoothScroll/SmoothScroll.min.js}"></script>
+            <script>SmoothScroll({ stepSize: 100, animationTime: 500 })
+            </script>
+            </script>
+            <script th:src="@{/assets/js/prism/prism_v3.js}" async=""></script>
+            <script type="text/javascript" th:if="${not #strings.isEmpty(theme.config.custom.code_js)}"
+                th:utext="${theme.config.custom.code_js}"></script>
+            <th:block th:if="${not #strings.isEmpty(theme.config.custom.footer_html)}"
+                th:utext="${theme.config.custom.footer_html}"> </th:block>
+        </main>
+    </div>
+
+
+</body>
+
+</html>

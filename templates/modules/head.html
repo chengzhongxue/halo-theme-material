@@ -1,0 +1,70 @@
+<head th:fragment="head">
+    <meta name="generator" content="Halo">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title th:text="${site_title}"></title>
+    <link rel="icon" th:href="${site.favicon}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="${site.favicon}">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" th:content="${site.seo.description}">
+    <meta name="keywords" th:content="${site.seo.keywords}">
+    <meta name="theme-color" th:content="${theme.config.uiux.android_chrome_color}">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <script rel="javascript" th:src="@{/assets/js/queue.js}"></script>
+    <link rel="stylesheet" th:href="@{/assets/js/prism/prism_v3.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/material.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <th:block th:replace="~{'modules/css/config_css'}" />
+    <style type="text/css" th:if="${not #strings.isEmpty(theme.config.custom.code_css)}"
+        th:utext="${theme.config.custom.code_css}"></style>
+    <script rel="javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" th:content="${site.title}">
+    <meta name="msapplication-starturl" th:content="${site.url}">
+    <meta name="msapplication-navbutton-color" th:content="${theme.config.uiux.android_chrome_color}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" th:content="${site.title}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" th:href="${site.favicon}">
+    <link rel="alternate" type="application/atom+xml" href="/rss.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <link th:href="@{/assets/js/AOS/aos.css}" rel="stylesheet">
+    <script rel="javascript" th:src="@{/assets/js/lazyload/lazyload.min.js}"></script>
+    <script rel="javascript" th:src="@{/assets/js/js.min.js}"></script>
+    <th:block th:if="${head != null}">
+        <th:block th:replace="${head}" />
+    </th:block>
+    <th:block th:if="${not #strings.isEmpty(theme.config.custom.head_html)}"
+        th:utext="${theme.config.custom.head_html}"> </th:block>
+
+    <th:block th:replace="~{'modules/js/thumbnail-script'}" />
+    
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            // Post_Toc parent position fixed
+            setTimeout(() => {
+                $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+            }, 1000)
+
+        });
+    </script>
+    <script type="text/javascript">
+        // Offer LazyLoad
+        queue.offer(function () {
+            $('.lazy').lazyload({
+                effect: 'show'
+            });
+        });
+
+        // Start Queue
+        $(document).ready(function () {
+            setInterval(function () {
+                queue.execNext();
+            }, 200);
+        });
+    </script>
+    <th:block th:replace="~{'modules/css/immersive-translate-input-injected-css'}" />
+</head>

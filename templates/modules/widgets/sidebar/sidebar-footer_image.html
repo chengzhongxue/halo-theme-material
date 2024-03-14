@@ -1,0 +1,8 @@
+<th:block th:with="sfooter_info = ${theme.config.sidebar.footer_image}">
+    <th:block th:each="sfooter,iterStat : ${sfooter_info}">
+        <span id="footer-image">
+            <a th:href="${sfooter.link}" target="_blank" th:title="${sfooter.title}">
+                <img th:src="${sfooter.img}" th:alt="${sfooter.title}"></a>
+        </span>
+    </th:block>
+</th:block>

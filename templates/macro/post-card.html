@@ -1,0 +1,98 @@
+<div class="locate-thumbnail-symbol"></div>
+<style>
+    .post-thumbnail-filter {
+        position: absolute;
+        width: 100%;
+        height: 90%;
+        border-radius: 18px 18px 0 0;
+        background-image: linear-gradient(to top, rgba(51, 51, 51, 0.8), rgba(51, 51, 51, 0));
+        opacity: 0.05;
+        transition: opacity 0.35s;
+    }
+
+    .mdl-card:hover .post-thumbnail-filter {
+        opacity: 0.1;
+        transition: opacity 0.35s;
+    }
+</style>
+<th:block th:each="post,iter : ${posts.items}">
+    <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade aos-init aos-animate" data-aos="fade-in"
+        data-aos-offset="120" data-aos-duration="600" data-aos-easing="ease-in-out" data-aos-once="true"
+        style=" min-height: 34pc; max-height: 40pc ">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" style="height: 320px;"
+            th:data-original="${post.spec.cover}">
+            <div class="post-thumbnail-filter"></div>
+            <a th:href="@{${post.status.permalink}}"></a>
+        </div>
+        <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+            <h2 class="article-headline-p" style="z-index: 1;">
+                <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+            </h2>
+            <div
+                style="color:#31353A !important; font-weight: 600; line-height:1.7; letter-spacing:1px; padding-left: 4px;">
+                <th:block th:if="${!post.spec.excerpt.autoGenerate}" th:text="${post.spec.excerpt.raw}"></th:block>
+                <br><br>
+                <p>
+                    <a th:href="@{${post.status.permalink}}" target="_self">阅读全文</a>
+                </p>
+            </div>
+        </div>
+        <div id="post_entry-info">
+            <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+                <div id="author-avatar">
+                    <img th:src="${post.owner.avatar}" width="44px" height="44px"
+                        th:alt="|${post.owner.displayName}'s avatar|">
+                </div>
+                <div>
+                    <strong style="font-size: 14px; font-weight: 600; color: #303236;"
+                        th:text="${post.owner.displayName}"></strong>
+                    <span style="font-size: 12px; font-weight: 400; color: #74858F;"
+                        th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}"></span>
+                </div>
+            </div>
+            <div id="post_entry-right-info" style="overflow: hidden;">
+                <th:block th:if="${not #lists.isEmpty(post.categories)}">
+                    <span th:each="category,iter : ${post.categories}" class="post_entry-category"
+                        style="margin: 0 4px; white-space: nowrap;">
+                        <a class="post_category-link" th:href="${category.status.permalink}"
+                            th:text="${category.spec.displayName}"></a>
+                    </span>
+                </th:block>
+
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+<nav class="material-nav mdl-cell mdl-cell--12-col">
+    <a class="extend prev" rel="prev" th:href="@{${posts.prevUrl}}" th:if="${posts.hasPrevious()}">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+            data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+        </button>
+    </a>
+    <span class="page-number current" th:text="${posts.page}">1</span>
+    <a class="extend next" rel="next" th:href="@{${posts.nextUrl}}" th:if="${posts.hasNext()}">
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+            data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_forward</i>
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span>
+        </button>
+    </a>
+</nav>
+<script type="text/javascript" id="thumbnail-script">
+    var randomNum;
+
+    var locatePost = $('.locate-thumbnail-symbol').next();
+    for (var i = 0; i < 10; i++) {
+        randomNum = Math.floor(Math.random() * 19 + 1);
+
+        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-' + randomNum);
+        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+        $('.post_thumbnail-random').addClass('lazy');
+
+        locatePost = locatePost.next();
+    }
+</script>

@@ -1,0 +1,46 @@
+<ul class="nav sidebar-nav">
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            <th:block th:each="dropdown,iterStat : ${theme.config.sidebar.dropdown}">
+                <li>
+                    <a th:href="${dropdown.link}" target="_blank" th:title="${dropdown.title}">
+                        <img class="material-icons sidebar-material-icons sidebar-indent-left1pc-element" th:src="${dropdown.icon}">
+                        [[${dropdown.title}]]
+                    </a>
+                </li>
+            </th:block>
+        </ul>
+    </li>
+    <th:block th:each="menuItem : ${menuFinder.getPrimary().menuItems}">
+        <li th:if="${#lists.isEmpty(menuItem.children)}">
+            <a th:with="icon = ${#annotations.getOrDefault(menuItem, 'icon', '')}"
+            th:href="@{${menuItem.status.href}}"  
+            th:title="${menuItem.status.displayName}" 
+            th:target="${menuItem.spec.target?.value}">
+                <img class="material-icons"
+                    style="position: relative;line-height: 1;margin-right: 2pc;width: 24px;height: 24px;top: -2px;"
+                    th:src="${icon}">
+                [[${menuItem.status.displayName}]]
+            </a>
+        </li>
+        <li class="dropdown" th:unless="${#lists.isEmpty(menuItem.children)}" >
+            <a href="#" class="ripple-effect dropdown-toggle" 
+              th:with="icon = ${#annotations.getOrDefault(menuItem, 'icon', '')}"
+               data-toggle="dropdown">
+                <img class="material-icons"
+                th:src="${icon}">
+                [[${menuItem.status.displayName}]]
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <th:block th:each="childMenu,iter : ${menuItem.children}">
+                    <li>
+                        <a class="sidebar_archives-link" th:target="${childMenu.spec.target?.value}"
+                         th:href="${childMenu.status.href}">[[${childMenu.status.displayName}]]</a>
+                    </li>
+                </th:block>
+                </li>
+            </ul>
+        </li>
+    </th:block>
+</ul>

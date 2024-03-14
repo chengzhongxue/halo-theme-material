@@ -1,0 +1,34 @@
+<footer class="mdl-mini-footer" id="bottom">
+    <div class="mdl-mini-footer--left-section sns-list">
+        <img th:src="${theme.config.footer.left_section}" style="width: auto; max-height: 156px; border-radius: 100%;">
+    </div>
+    <div id="copyright">
+        <div th:utext="${theme.config.footer.copyright_html}"></div>
+        <br>
+        <div th:with="sfooter_info = ${theme.config.footer.sfooter_info}">
+            <th:block th:each="sfooter,iterStat : ${sfooter_info}">
+                <a th:href="${sfooter.sf_link}" th:text="${sfooter.sf_title}"></a>
+                <th:block th:if="${iterStat.count<sfooter_info.size()}">/</th:block>
+            </th:block>
+        </div>
+        <br>
+        <th:block th:utext="${theme.config.footer.beian_html}"></th:block>
+    </div>
+    <div class="mdl-mini-footer--right-section">
+        <div>
+            <div class="footer-develop-div">
+                <a href="https://hexo.io" target="_blank" class="footer-develop-a">
+                    <img class="lazy"
+                        data-original="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo"
+                        title="框架：Hexo" src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo">
+                </a>
+            </div>
+            <div class="footer-develop-div">
+                <a href="https://github.com/bollnh/hexo-theme-material" target="_blank" class="footer-develop-a">
+                    <img class="lazy" data-original="https://img.shields.io/badge/Theme-Material-EA1E63"
+                        title="主题：Material" src="https://img.shields.io/badge/Theme-Material-EA1E63">
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

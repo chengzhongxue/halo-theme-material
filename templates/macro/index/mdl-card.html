@@ -1,0 +1,93 @@
+<div class="mdl-card  daily-pic mdl-cell mdl-cell--8-col index-top-block">
+    <div class="mdl-card__media mdl-color-text--grey-50"
+        th:style="|background-image:url(${theme.config.index.mdl_card.daily_pic})|">
+        <p class="index-top-block-slogan"><a th:href="${theme.config.index.mdl_card.daily_link}">
+                👀
+            </a></p>
+    </div>
+</div>
+<div class="mdl-card  something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop index-top-block">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-upgraded" 
+       th:if="${pluginFinder.available('PluginSearchWidget')}" method="post" action=""
+        data-upgraded=",MaterialTextfield">
+        <a class="iconfont out icon-search-fill" href="javascript:SearchWidget.open();" title="站内搜索">
+            <label id="search-label"
+            class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent mdl-shadow--4dp"
+            for="search" data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons mdl-color-text--white" role="presentation">search</i>
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></label>
+        </a>
+        <form autocomplete="off" id="search-form" class="mdl-textfield__expandable-holder">
+            <label id="search-form-label" class="mdl-textfield__label" for="search"></label>
+        </form>
+    </div>
+    <div id="local-search-result" style="border-radius: 24px;"></div>
+    <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
+        <a class="amos-static-logo" href="#" target="_blank" style="display: none;">
+            <img th:src="${theme.config.basics.logo}" alt="logo">
+        </a>
+        <span class="amos-zdog-logo" style="display: block;" title="拖动我试试看">
+            <canvas id="amos-logo-zdog-canvas"></canvas>
+        </span>
+        <script th:src="@{/assets/js/zdog/zdog/zdog.dist.min.js}"></script>
+        <script th:src="@{/assets/js/zdog/amos-zdog.js}"></script>
+    </div>
+    <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+        <div>
+            <strong style="font-size: 14px; font-weight: 600; color: #303236;" th:text="${site.title}"></strong>
+        </div>
+        <div class="section-spacer"></div>
+        <button id="show-pages-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <img class="material-icons" th:src="@{/assets/img/icon/blog_view-carousel.svg}">
+            <span class="visuallyhidden">Pages</span></button>
+        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="show-pages-button">
+            <th:block th:each="page,iterStat : ${theme.config.index.pages}">
+                <a class="index_share-link" th:href="${page.link}" title="标签">
+                    <li class="mdl-menu__item mdl-js-ripple-effect" th:text="${page.title}">
+                    </li>
+                </a>
+            </th:block>
+
+        </ul>
+        <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <img class="material-icons" th:src="@{/assets/img/icon/blog_more-vert.svg}">
+            <span class="visuallyhidden">show menu</span></button>
+        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="menubtn">
+            <a th:if="${pluginFinder.available('PluginFeed')}"
+               class="index_share-link" href="/rss.xml" target="_blank">
+                <li class="mdl-menu__item mdl-js-ripple-effect">
+                    文章 RSS
+                </li>
+            </a>
+            <a th:if="${theme.config.sns_share.weibo}" class="index_share-link"
+               th:href="|http://service.weibo.com/share/share.php?appkey=&amp;title=${site.title}&amp;url=${site.url}&amp;pic=${site.favicon}&amp;searchPic=false&amp;style=simple|"
+                target="_blank">
+                <li class="mdl-menu__item mdl-js-ripple-effect">
+                    分享到微博
+                </li>
+            </a>
+            <a th:if="${theme.config.sns_share.twitter}" class="index_share-link" th:href="|https://twitter.com/intent/tweet?text=${site.title}&url=${site.url}&via=${site.title}|" target="_blank">
+                <li class="mdl-menu__item mdl-js-ripple-effect">
+                    分享到 twitter
+                </li>
+            </a>
+            <a th:if="${theme.config.sns_share.facebook}" class="index_share-link" th:href="https://www.facebook.com/sharer/sharer.php?u=${site.url}" target="_blank">
+                <li class="mdl-menu__item mdl-js-ripple-effect">
+                    分享到 facebook
+                </li>
+            </a>
+            <a th:if="${theme.config.sns_share.qq}" class="post_share-link"
+                th:href="|http://connect.qq.com/widget/shareqq/index.html?site=${site.title}&amp;title=${site.title}&amp;summary=${site.title}博客&amp;pics=${site.favicon}&amp;url=${site.url}|"
+                target="_blank">
+                <li class="mdl-menu__item">
+                    分享到 QQ
+                </li>
+            </a>
+            <a th:if="${theme.config.sns_share.telegram}" class="post_share-link" th:href="|https://telegram.me/share/url?url=${site.url}&text=${site.title}|" target="_blank">
+                <li class="mdl-menu__item">
+                    分享到 telegram
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>

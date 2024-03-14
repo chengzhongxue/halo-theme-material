@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:fragment="html (head,content)" style class="mdl-js">
+
+<head>
+    <meta name="generator" content="Halo">
+    <meta charset="utf-8">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title th:text="${'Photo | '+site.title}"></title>
+    <link rel="icon" th:href="${site.favicon}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="${site.favicon}">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" th:content="${site.seo.description}">
+    <meta name="keywords" th:content="${site.seo.keywords}">
+    <meta name="theme-color" th:content="${theme.config.uiux.android_chrome_color}">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <script rel="javascript" th:src="@{/assets/js/queue.js}"></script>
+    <link rel="stylesheet" th:href="@{/assets/js/prism/prism_v3.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/material.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <th:block th:replace="~{'modules/css/config_css'}" />
+    <script rel="javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" th:content="${site.title}">
+    <meta name="msapplication-starturl" th:content="${site.url}">
+    <meta name="msapplication-navbutton-color" th:content="${theme.config.uiux.android_chrome_color}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" th:content="${site.title}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" th:href="${site.favicon}">
+    <link rel="alternate" type="application/atom+xml" href="/rss.xml">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" th:content="${'Photo | '+site.title}">
+    <meta property="og:image" th:content="${site.favicon}">
+    <meta property="og:description" th:href="${site.favicon}">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" th:href="${site.url}">
+    <link th:href="@{/assets/js/AOS/aos.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/assets/css/gallery.min.css}">
+    <script rel="javascript" th:src="@{/assets/js/lazyload/lazyload.min.js}"></script>
+    <th:block th:replace="~{'modules/css/immersive-translate-input-injected-css'}" />
+</head>
+
+<body class="">
+    <div id="wrapper">
+        <header id="header">
+            <h1>
+                <a href="/"><strong>[[${site.title}]]</strong></a> - Photo
+            </h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#footer" class="icon fa-info-circle">
+                            打开相册 
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div id="main">
+
+            <th:block th:each="group : ${groups}">
+                <div th:id="${group.spec.displayName}" style="
+                      width: 100%;
+                      margin-top: 48px;
+                      margin-bottom: 12px;
+                      margin-left: 12px;
+                      text-align: center;
+                      color: #242629;
+                      font-size: 48px;
+                      font-weight: 600;
+                      text-shadow: #FFF 1px 0 0, #FFF 0 1px 0, #FFF -1px 0 0, #FFF 0 -1px 0;
+                    "># [[${group.spec.displayName}]]</div>
+                <article class="thumb" th:each="photo : ${group.photos}">
+                    <a th:href="${photo.spec.url}" class="image lazy" th:data-original="${photo.spec.url}">
+                        <img class="lazy" th:data-original="${photo.spec.url}" th:alt="${photo.spec.displayName}"/></a>
+                    <h2 th:text="${photo.spec.displayName}"></h2>
+                    <p th:text="${photo.spec.description}"></p>
+                </article>
+            </th:block>
+
+        </div>
+        <footer id="footer" class="panel">
+            <div class="inner split">
+                <div>
+                    <section>
+                        <h2>相册</h2>
+                        <ul class="icons">
+                            <th:block th:each="group : ${photoFinder.groupBy()}">
+                                <li>
+                                    <a th:href="|#${group.spec.displayName}|"># [[${group.spec.displayName}]]</a>
+                                </li>
+                            </th:block>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <div class="closer"></div>
+        </footer>
+    </div>
+    <script th:src="@{/assets/js/gallery/gallery.js}"></script>
+    <script>queue.offer(function () {
+            $('.lazy').lazyload({
+                effect: 'fadeIn', event: 'scrollstop'
+            });
+        })
+        $(document).ready(function () { setInterval(function () { queue.execNext(); }, 200); });</script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<script type="module">
+    /**
+     * 网站概况 - 度过时间
+     **/
+    function show_runtime() {
+        window.setTimeout(() => {
+            show_runtime();
+        }, 1000);
+        const X = new Date('[(${theme.config.right_sidebar.build_date})]');
+        const Y = new Date();
+        const T = Y.getTime() - X.getTime();
+        const M = 24 * 60 * 60 * 1000;
+        const a = T / M;
+        const dnum = Math.floor(a);
+        const b = (a - dnum) * 24;
+        const hnum = Math.floor(b);
+        const c = (b - hnum) * 60;
+        const mnum = Math.floor((b - hnum) * 60);
+        const snum = Math.floor((c - mnum) * 60);
+        $('.amos-main-setion .amos-sticky #runtime_span').html(dnum + " 天 " + hnum + " 时 " + mnum + " 分 " + snum + " 秒")
+    };
+    show_runtime();
+</script>

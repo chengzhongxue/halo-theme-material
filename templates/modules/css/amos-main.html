@@ -1,0 +1,317 @@
+<style>
+    .amos-main-setion {
+      display: flex;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      max-width: 1214px;
+      flex-shrink: 0;
+    }
+
+    .amos-main-setion .amos-main {
+      width: 75% !important;
+    }
+
+    .amos-main-setion .amos-aside {
+      width: 30%;
+    }
+
+    .amos-main-setion .amos-card {
+      position: relative;
+      width: 280px;
+      min-height: 200px;
+      padding: 20px;
+      margin: calc(3.5rem/4) calc(3.5rem/2) calc(3.5rem/1.5) calc(3.5rem/2);
+      background: #FFFFFF;
+      border-radius: 20px;
+    }
+
+    .amos-main-setion .amos-card-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 900;
+      margin: 8px 0 14px 8px;
+    }
+
+    .amos-main-setion .amos-card-title .dot {
+      position: relative;
+      width: 8px;
+      height: 8px;
+      margin: 0 12px 2px 0;
+      border-radius: 100%;
+    }
+
+    .status-processing::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 1px solid #3b76fb;
+      border-radius: 50%;
+      -webkit-animation: statusProcessing 1.2s infinite ease-in-out;
+      animation: statusProcessing 1.2s infinite ease-in-out;
+      content: "";
+    }
+
+    @keyframes statusProcessing {
+      0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+
+      100% {
+        transform: scale(2.4);
+        opacity: 0;
+      }
+    }
+
+    .amos-main-setion .amos-card-content {
+      padding: 8px;
+    }
+
+    @keyframes rotate_loading {
+      from {
+        transform: rotate(0deg)
+      }
+
+      to {
+        transform: rotate(359deg)
+      }
+    }
+
+    .amos-main-setion .amos-recent-loading {
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .amos-main-setion .amos-recent-loading img {
+      animation: rotate_loading 3s linear infinite;
+    }
+
+    .amos-main-setion .amos-recent-error {
+      display: none;
+      height: 140px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media screen and (max-width:1280px) {
+      .amos-main-setion {
+        display: block;
+      }
+
+      .amos-main-setion .material-index {
+        width: 100% !important;
+      }
+
+      .amos-main-setion .amos-aside {
+        display: none;
+      }
+    }
+
+    .amos-main-setion #amos-waline-recent {
+      font-size: 12px;
+    }
+
+    .amos-main-setion #amos-waline-recent img {
+      width: 24px;
+    }
+
+    .amos-main-setion #amos-waline-recent .vemoji {
+      width: 20px;
+    }
+
+    .amos-main-setion #amos-waline-recent p {
+      font-size: 12px;
+    }
+
+    .amos-main-setion #amos-waline-recent pre {
+      display: none;
+    }
+
+    .amos-main-setion #amos-waline-recent a {
+      text-decoration: none;
+    }
+
+    .amos-main-setion #amos-waline-recent h1 {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .amos-main-setion #amos-waline-recent h2 {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .amos-main-setion #amos-waline-recent h3 {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .amos-main-setion #amos-waline-recent h4 {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .amos-main-setion #amos-waline-recent {
+      display: none;
+      padding: 8px;
+      border-radius: 18px;
+    }
+
+    .amos-main-setion #amos-waline-recent ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    .amos-main-setion #amos-waline-recent .waline-widget-item {
+      padding-bottom: 10px;
+      list-style: none;
+    }
+
+    .amos-main-setion #amos-waline-recent .waline-widget-item .amos-recent-list {
+      display: flex;
+      align-items: center;
+      border-radius: 6px;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .amos-main-setion #amos-waline-recent .waline-widget-item .recent-avatar {
+      width: 24px;
+      height: 24px;
+      margin-right: 6px;
+      border-radius: 100%;
+    }
+
+    .amos-main-setion #amos-waline-recent .waline-widget-item .recent-content {
+      margin-left: 32px;
+      text-overflow: -o-ellipsis-lastline;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .amos-main-setion .amos-hello-main {
+      color: #FFFFFF;
+      overflow: hidden;
+      padding: 0 !important;
+      min-height: 359px;
+      background: #0c0713 !important;
+    }
+
+    .amos-main-setion .amos-card-img {
+      position: absolute;
+      width: calc(100% + 60px);
+      height: calc(100% + 60px);
+      margin: 0px;
+      background: radial-gradient(farthest-side at 128% 90%, #7d4b4b, transparent);
+      -webkit-filter: blur(4px);
+      -moz-filter: blur(4px);
+      -ms-filter: blur(4px);
+      -o-filter: blur(4px);
+      filter: blur(4px);
+    }
+
+    .amos-main-setion .amos-card-bg {
+      position: absolute;
+      width: calc(100%);
+      height: calc(100%);
+      background: rgba(49, 53, 58, .45);
+    }
+
+    .amos-main-setion .amos-card-bg-content {
+      position: relative;
+      padding: 32px;
+      width: 100%;
+      height: auto;
+    }
+
+    .amos-main-setion .amos-hello {
+      font-size: 14px;
+      font-weight: 600;
+      color: #adaab2;
+      line-height: 26px;
+    }
+
+    @keyframes hand-hello {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      16% {
+        transform: rotate(25deg);
+      }
+
+      48% {
+        transform: rotate(-25deg);
+      }
+
+      64% {
+        transform: rotate(0deg);
+      }
+    }
+
+    .amos-main-setion .amos-hello-main .hello-title {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .amos-main-setion .amos-hello-main .hand-hello {
+      animation: hand-hello 3s infinite;
+      transform-origin: 75% 75%;
+      font-size: 20px;
+    }
+
+    .amos-main-setion .amos-hello-strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 1);
+    }
+
+    .amos-main-setion .amos-hello a {
+      color: #FFFFFF;
+      font-weight: 500;
+    }
+
+    .amos-main-setion .amos-hello .amos-btn {
+      position: relative;
+      left: -4px;
+      cursor: pointer;
+      outline: none;
+      height: 40px;
+      padding: 0 32px;
+      margin-top: 18px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      background-color: #000000;
+      border: none;
+      border-radius: 12px;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, .045);
+      transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    }
+
+    .amos-main-setion .amos-hello .amos-btn:hover {
+      opacity: 0.6;
+      transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    }
+
+    .amos-main-setion .amos-survey-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-weight: 600;
+      margin: 12px 0;
+    }
+  </style>

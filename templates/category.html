@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1 th:text="${category.spec.displayName}"></h1>
-    <ul>
-      <li th:each="post : ${posts.items}">
-        <a
-          th:href="@{${post.status.permalink}}"
-          th:text="${post.spec.title}"
-        ></a>
-      </li>
-    </ul>
-    <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">上一页</a>
-    <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}">下一页</a>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = ~{::head},content = ~{::content},_title = ${category.spec.displayName})}">
+<th:block th:fragment="head">
+  <meta property="og:url" th:content="${site.url+category.status.permalink}">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" th:content="${site_title}">
+  <meta property="og:image" th:content="${site.favicon}">
+  <meta property="og:description" th:content="${site_title}">
+  <link rel="canonical" th:href="${site.url+category.status.permalink}">
+</th:block>
+<th:block th:fragment="content">
+  <div class="amos-main-setion">
+    <div class="material-index mdl-grid amos-main">
+      <th:block th:replace="~{'macro/post-card'}" />
+    </div>
+    <th:block th:replace="~{'modules/widgets/amos-aside'}" />
+  </div>
+  <th:block th:replace="~{'modules/css/amos-main'}" />
+  <script th:src="@{/assets/js/jQuery.positionSticky/jQuery.positionSticky.min.js}"></script>
+  <th:block th:replace="~{'modules/js/show_runtime-script'}" />
+</th:block>
+
 </html>

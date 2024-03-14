@@ -1,13 +1,230 @@
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: theme-starter-setting
+  name: theme-material-setting
 spec:
   forms:
-    - group: style
-      label: 样式
+    - group: basics
+      label: 基础
+      formSchema:
+        - $formkit: text
+          name: fonts_family  
+          label: 自定义字体
+          value: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif
+        - $formkit: text
+          name: author
+          label: 作者名称
+          value: 困困鱼
+          validation: required
+        - $formkit: attachment
+          name: logo
+          label: logo
+          value: "/themes/theme-material/assets/img/logo.png"
+        - $formkit: attachment
+          name: avatar
+          label: 头像
+          value: "/themes/theme-material/assets/img/avatar.png"
+        - $formkit: attachment
+          name: sidebar_header
+          label: 左侧菜单背景图
+          value: "/themes/theme-material/assets/img/sidebar_header.png"
+       
+    - group: uiux
+      label: 全局颜色
       formSchema:
         - $formkit: color
-          name: background_color
-          label: 背景颜色
-          value: "#f2f2f2"
+          name: theme_color
+          label: 主题颜色
+          value: "#31353A"
+        - $formkit: color
+          name: button_color
+          label: 按钮颜色
+          value: "#000000cc"
+        - $formkit: color
+          name: hyperlink_color
+          label: 超链接颜色
+          value: "#31353A"
+        - $formkit: color
+          name: android_chrome_color
+          label: 系统浏览器颜色
+          value: "#31353A"
+        
+
+    - group: index
+      label: 首页
+      formSchema:
+        - $formkit: group
+          name: mdl_card
+          label: 顶部卡片
+          value:
+            daily_pic: "/themes/theme-material/assets/img/daily_pic.jpg"
+            daily_link: "/about"
+          children:
+            - $formkit: attachment
+              name: daily_pic
+              label: 卡片背景
+              validation: required
+            - $formkit: text
+              name: daily_link
+              label: 卡片链接
+              validation: required
+        - $formkit: repeater
+          name: pages
+          label: 社交媒体
+          value:
+            - title: "标签"
+              link: "/tags"
+          children:
+            - $formkit: text
+              name: title  
+              label: 名称
+              validation: required
+            - $formkit: text
+              name: link
+              label: 链接
+              validation: required
+        
+    - group: sns_share
+      label: 分享按钮
+      formSchema:
+        - $formkit: checkbox
+          name: twitter
+          label: Twitter
+          value: false
+        - $formkit: checkbox
+          name: facebook
+          label: facebook
+          value: false
+        - $formkit: checkbox
+          name: weibo
+          label: 微博
+          value: false
+        - $formkit: checkbox
+          name: qq
+          label: qq
+          value: false
+        - $formkit: checkbox
+          name: telegram
+          label: telegram
+          value: false
+
+    - group: sidebar
+      label: 左侧菜单
+      formSchema:
+        - $formkit: repeater
+          name: dropdown
+          value:
+            - title: new-post
+              icon: "/themes/theme-material/assets/img/footer/footer_github-fill.svg"
+              link: https://github.com/AmosHuKe
+          children:
+            - $formkit: text
+              name: title  
+              label: 名称
+              validation: required
+            - $formkit: attachment
+              name: icon  
+              label: 图标
+              validation: required
+            - $formkit: text
+              name: link
+              label: 链接
+              validation: required
+        - $formkit: repeater
+          name: footer_image
+          label: 社交媒体
+          value: [ ]
+          children:
+            - $formkit: text
+              name: title  
+              label: 名称
+              validation: required
+            - $formkit: attachment
+              name: img  
+              label: 图标
+              validation: required
+            - $formkit: text
+              name: link
+              label: 链接
+              validation: required
+
+    - group: right_sidebar
+      label: 侧边栏
+      formSchema:
+        - $formkit: code
+          name: profile
+          label: 个人卡片
+          height: 200px
+          language: html 
+          value: <div class="amos-hello"> 我叫 <span class="amos-hello-strong">困困鱼 / moony.la</span> <br><br> 在这块小地方记录自己， <br>关于技术、生活、分享的片段， <br> 如果感兴趣的话， <br> 你可以 👇 <br> <div> <a href="/about"><button class="amos-btn">关于 / 留言</button></a></div> </div>
+        - $formkit: date
+          name: build_date
+          label: 建站日期
+          validation: required
+          value: "2024-03-14"
+
+    - group: footer
+      label: 底部
+      formSchema:
+        - $formkit: attachment
+          name: left_section
+          label: 左侧图
+          value: /themes/theme-material/assets/img/avatar.webp
+        - $formkit: code
+          name: copyright_html
+          label: 版权信息
+          height: 100px
+          language: html
+          value: Copyright&nbsp;© <span id="footer-copyright-year">2024</span> moony.la
+        - $formkit: repeater
+          name: sfooter_info
+          label: 社交媒体
+          value: [ ]
+          children:
+            - $formkit: text
+              name: sf_title  
+              label: 名称
+              validation: required
+            - $formkit: text
+              name: sf_link
+              label: 链接
+              validation: required
+        - $formkit: code
+          name: beian_html
+          label: 备案信息
+          height: 100px
+          language: html
+          value: <p><a target="_blank" href="http://beian.miit.gov.cn/" rel="nofollow">渝ICP备xxxxxx号</a></p>
+
+    - group: links
+      label: 友链
+      formSchema:
+        - $formkit: code
+          name: linksArticle
+          height: 300px
+          label: 顶部显示内容
+          language: html
+
+    - group: custom
+      label: 扩展设置
+      formSchema:
+        - $formkit: code
+          name: head_html
+          label: 头部HTML代码
+          height: 200px
+          language: html
+        - $formkit: code
+          name: footer_html
+          label: 底部HTML代码
+          height: 200px
+          language: html
+        - $formkit: code
+          name: code_css
+          label: 自定义CSS
+          height: 200px
+          language: css
+        - $formkit: code
+          name: code_js
+          label: 自定义Javascript
+          height: 200px
+          language: javascript
