@@ -71,7 +71,7 @@
                     分享到 twitter
                 </li>
             </a>
-            <a th:if="${theme.config.sns_share.facebook}" class="index_share-link" th:href="https://www.facebook.com/sharer/sharer.php?u=${site.url}" target="_blank">
+            <a th:if="${theme.config.sns_share.facebook}" class="index_share-link" th:href="|https://www.facebook.com/sharer/sharer.php?u=${site.url}|" target="_blank">
                 <li class="mdl-menu__item mdl-js-ripple-effect">
                     分享到 facebook
                 </li>
