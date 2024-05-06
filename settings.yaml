@@ -28,6 +28,11 @@ spec:
           name: sidebar_header
           label: 左侧菜单背景图
           value: "/themes/theme-material/assets/img/sidebar_header.png"
+        - $formkit: text
+          label: 头像服务镜像地址
+          name: providerMirror
+          value: "https://cravatar.cn"
+          validation: required
        
     - group: uiux
       label: 全局颜色

@@ -40,11 +40,30 @@
   </style>
   <div class=" material-tagscloud">
     <div class="material-post mdl-grid">
-      <a th:each="tagItem : ${tags}" th:href="@{${tagItem.status.permalink}}" style="font-size: 18.71px; color: #757575"
+      <a th:each="tagItem : ${tags}"
+         th:href="@{${tagItem.status.permalink}}"
+         th:rel="${tagItem.status.visiblePostCount}"
         th:text="${tagItem.spec.displayName}"></a>
 
     </div>
   </div>
+  <th:block th:fragment="js">
+    <script type="text/javascript" th:src="@{/assets/js/tagcloud/jquery.tagcloud.js}"></script>
+    <script>
+      $.fn.tagcloud.defaults = {
+        size: {
+          start: 16,
+          end: 35,
+          unit: "px"
+        },
+        color: { start: '#757575', end: '#212121' }
+      };
+
+      $(function () {
+        $('.mdl-grid a').tagcloud();
+      });
+    </script>
+  </th:block>
   <script type="text/javascript" id="page-tagcloud-script">
     var adjustFooter = function () {
       if (($('#bottom').offset().top + $('#bottom').outerHeight()) < $(window).height()) {

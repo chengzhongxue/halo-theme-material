@@ -19,7 +19,7 @@
     <th:block th:replace="~{'modules/css/config_css'}" />
     <style type="text/css" th:if="${not #strings.isEmpty(theme.config.custom.code_css)}"
         th:utext="${theme.config.custom.code_css}"></style>
-    <script rel="javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+    <script rel="javascript" th:src="@{/assets/js/jquery.min.js?v='2.2.0'}"></script>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" th:content="${site.title}">
     <meta name="msapplication-starturl" th:content="${site.url}">

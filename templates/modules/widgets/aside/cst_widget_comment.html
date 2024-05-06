@@ -12,7 +12,7 @@
                 url = ${page == null? '/' : page.status.permalink + '#comment-' + comment.metadata.name}">
                         <a class="amos-recent-list" th:href="${url}">
                             <img class="recent-avatar"
-                                 th:with=" img =${#strings.isEmpty(comment.owner.avatar)?'https://cravatar.cn/avatar/?d=mp':comment.owner.avatar}"
+                                 th:with=" img =${#strings.isEmpty(comment.owner.avatar)? theme.config.basics.providerMirror+'/avatar/'+comment.spec.owner.annotations['email-hash'] :comment.owner.avatar}"
                                  th:src="${img}">
                             [[${comment.owner.displayName}]]：
                         </a>
