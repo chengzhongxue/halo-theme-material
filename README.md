@@ -23,8 +23,9 @@
   </a>  </a>
 </p>
 
-### 预览：[困困鱼](https://kunkunyu.com/)
-![image](https://api.minio.yyds.pink/moony/files/2024/03/Snipaste_2024-03-14_16-07-39-yypoxynj.png)
+### 预览：[困困鱼](https://demo.kunkunyu.com/?preview-theme=theme-material)
+
+![image](https://api.minio.yyds.pink/halo-docs/2024/05/material.png)
 ### 文档：[Material 使用文档](https://docs.kunkunyu.com/docs/material)
 ### 安裝
 直接通过后台应用市场安装或者下载[releases](https://github.com/chengzhongxue/halo-theme-material/releases)，通过 Halo Console 后台主题安装处上传即可。
