@@ -77,7 +77,10 @@ material 主题支持以下 Halo 插件：
 <br>
 
 ### 💬 讨论
-![image](https://api.minio.yyds.pink/moony/files/2024/03/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240314171529-qugslntf.jpg)
+
+如果你对主题有什么建议或者意见，欢迎提 PR & issue。
+
+<img width="360" src="https://api.minio.yyds.pink/halo-docs/2024/04/hao-2.jpg" />
 
 
 ### 赞助
