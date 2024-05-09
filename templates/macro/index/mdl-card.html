@@ -27,10 +27,10 @@
             <img th:src="${theme.config.basics.logo}" alt="logo">
         </a>
         <span class="amos-zdog-logo" style="display: block;" title="拖动我试试看">
-            <canvas id="amos-logo-zdog-canvas"></canvas>
+            <canvas class="illo"></canvas>
         </span>
-        <script th:src="@{/assets/js/zdog/zdog/zdog.dist.min.js}"></script>
-        <script th:src="@{/assets/js/zdog/amos-zdog.js}"></script>
+        <script th:src="@{/assets/js/zdog/zdog/zdog.dist.min.js?v='1.1.3'}"></script>
+        <script th:src="@{/assets/js/zdog/amos-zdog.js?v={version}(version=${theme.spec.version})}"></script>
     </div>
     <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
         <div>

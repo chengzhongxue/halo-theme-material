@@ -212,7 +212,7 @@ spec:
         - $formkit: attachment
           name: left_section
           label: 左侧图
-          value: /themes/theme-material/assets/img/avatar.webp
+          value: /themes/theme-material/assets/img/avatar.png
         - $formkit: code
           name: copyright_html
           label: 版权信息

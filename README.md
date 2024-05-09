@@ -7,6 +7,7 @@
 
 一款 [Halo2.0](https://github.com/halo-dev/halo) 的博客主题  
 移植于 hexo  [hexo-theme-material](https://github.com/iblh/hexo-theme-material)同名主题
+灵感来源：Amos (https://github.com/AmosHuKe)
 
 </div>
 
