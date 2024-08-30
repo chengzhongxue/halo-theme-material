@@ -10,11 +10,11 @@ spec:
     name: 困困鱼
     website: "https://github.com/chengzhongxue"
   description: 移植自hexo同名主题material，一款优秀的个人博客模板。
-  logo: "https://api.minio.yyds.pink/moony/files/2024/03/material-logo-qscjjpdz.png"
+  logo: "/themes/theme-material/assets/img/logo.png"
   website: "https://www.halo.run/store/apps/app-GYdaD"
   repo: "https://github.com/chengzhongxue/halo-theme-material"
   issues:  "https://github.com/chengzhongxue/halo-theme-material/issues"
   settingName: "theme-material-setting"
   configMapName: "theme-material-configMap"
-  version: "1.0.2"
-  require: ">=2.15"
+  version: "1.0.3"
+  require: ">=2.19"

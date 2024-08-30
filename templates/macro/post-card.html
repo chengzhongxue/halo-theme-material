@@ -20,7 +20,7 @@
         data-aos-offset="120" data-aos-duration="600" data-aos-easing="ease-in-out" data-aos-once="true"
         style=" min-height: 34pc; max-height: 40pc ">
         <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" style="height: 320px;"
-            th:data-original="${post.spec.cover}">
+            th:data-original="${thumbnail.gen(post.spec.cover, 'l')}">
             <div class="post-thumbnail-filter"></div>
             <a th:href="@{${post.status.permalink}}"></a>
         </div>

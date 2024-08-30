@@ -21,7 +21,7 @@
     <div class="material-post mdl-grid">
       <div class="mdl-card mdl-cell mdl-cell--12-col">
         <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50"
-          th:style="|background-image:url(${post.spec.cover})|">
+          th:style="|background-image:url(${thumbnail.gen(post.spec.cover, 'l')})|">
         </div>
         <h2 class="article-headline-p" style="margin: 48px 18px 48px 18px; text-align: center;"
           th:text="${post.spec.title}">
