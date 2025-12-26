@@ -11,13 +11,26 @@
 <th:block th:fragment="content">
   <th:block th:replace="~{plugin:plugin-douban:modules/style}"></th:block>
   <style>
+    #scheme-Paradox .material-layout .material-layout__content {
+      padding-top: 135px;
+    }
+    @media screen and (max-width: 480px) {
+      #scheme-Paradox .material-layout .material-layout__content {
+        padding-top: 41px;
+      }
+    }
     .amos-main-setion {
-      display: flex;
       margin: 0 auto;
       padding: 0;
       width: 100%;
       max-width: 1214px;
       flex-shrink: 0;
+    }
+    @media screen and (max-width: 768px) {
+      .amos-main-setion {
+        padding-top: .5rem;
+        padding: .5rem 1rem;
+      }
     }
   </style>
   <div class="amos-main-setion">
