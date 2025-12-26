@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = ~{::head},content = ~{::content},_title = ${title})}">
+<th:block th:fragment="head">
+  <meta property="og:url" th:content="${site.url+'/equipments'}">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" th:content="${site_title}">
+  <meta property="og:image" th:content="${site.favicon}">
+  <meta property="og:description" th:content="${site_title}">
+  <link rel="canonical" th:href="${site.url+'/equipments'}">
+</th:block>
+<th:block th:fragment="content">
+  <th:block th:replace="~{plugin:equipment:modules/style}"></th:block>
+  <style>
+    #scheme-Paradox .material-layout .material-layout__content {
+      padding-top: 141px;
+    }
+    @media screen and (max-width: 480px) {
+      #scheme-Paradox .material-layout .material-layout__content {
+        padding-top: 41px;
+      }
+    }
+    .amos-main-setion {
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      max-width: 1214px;
+      flex-shrink: 0;
+    }
+    @media screen and (max-width: 768px) {
+      .amos-main-setion {
+        padding-top: .5rem;
+        padding: .5rem 1rem;
+      }
+    }
+    div#equipment {
+      margin-top: 0px;
+    }
+    h2.equipment-item-title {
+      line-height: 1;
+    }
+  </style>
+  <div class="amos-main-setion">
+    <th:block th:replace="~{plugin:equipment:modules/equipment}"></th:block>
+  </div>
+  <th:block th:replace="~{'modules/js/show_runtime-script'}" />
+</th:block>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(head = ~{::head},content = ~{::content},_title = ${title})}">
+<th:block th:fragment="head">
+  <meta property="og:url" th:content="${site.url+'/douban'}">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" th:content="${site_title}">
+  <meta property="og:image" th:content="${site.favicon}">
+  <meta property="og:description" th:content="${site_title}">
+  <link rel="canonical" th:href="${site.url+'/douban'}">
+</th:block>
+<th:block th:fragment="content">
+  <th:block th:replace="~{plugin:plugin-douban:modules/style}"></th:block>
+  <style>
+    .amos-main-setion {
+      display: flex;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      max-width: 1214px;
+      flex-shrink: 0;
+    }
+  </style>
+  <div class="amos-main-setion">
+    <th:block th:replace="~{plugin:plugin-douban:modules/douban}"></th:block>
+  </div>
+  <th:block th:replace="~{'modules/js/show_runtime-script'}" />
+  <th:block th:replace="~{plugin:plugin-douban:modules/script}"></th:block>
+</th:block>
+
+</html>
