@@ -27,6 +27,8 @@ spec:
         - $formkit: attachment
           name: sidebar_header
           label: 左侧菜单背景图
+          width: "15rem"
+          aspectRatio: "16/9"
           value: "/themes/theme-material/assets/img/sidebar_header.png"
         - $formkit: text
           label: 头像服务镜像地址
@@ -69,13 +71,20 @@ spec:
               name: daily_pic
               label: 卡片背景
               validation: required
+              width: "15rem"
+              aspectRatio: "16/9"
             - $formkit: text
               name: daily_link
               label: 卡片链接
               validation: required
-        - $formkit: repeater
+        - $formkit: array
           name: pages
           label: 社交媒体
+          itemLabels:
+            - type: text
+              label: $value.title
+            - type: text
+              label: $value.link
           value:
             - title: "标签"
               link: "/tags"
@@ -92,23 +101,23 @@ spec:
     - group: sns_share
       label: 分享按钮
       formSchema:
-        - $formkit: checkbox
+        - $formkit: switch
           name: twitter
           label: Twitter
           value: false
-        - $formkit: checkbox
+        - $formkit: switch
           name: facebook
           label: facebook
           value: false
-        - $formkit: checkbox
+        - $formkit: switch
           name: weibo
           label: 微博
           value: false
-        - $formkit: checkbox
+        - $formkit: switch
           name: qq
           label: qq
           value: false
-        - $formkit: checkbox
+        - $formkit: switch
           name: telegram
           label: telegram
           value: false
@@ -116,8 +125,13 @@ spec:
     - group: sidebar
       label: 左侧菜单
       formSchema:
-        - $formkit: repeater
+        - $formkit: array
           name: dropdown
+          itemLabels:
+            - type: text
+              label: $value.title
+            - type: text
+              label: $value.link
           value:
             - title: 困困鱼
               icon: "/themes/theme-material/assets/img/footer/footer_github-fill.svg"
@@ -135,10 +149,15 @@ spec:
               name: link
               label: 链接
               validation: required
-        - $formkit: repeater
+        - $formkit: array
           name: footer_image
           label: 社交媒体
           value: [ ]
+          itemLabels:
+            - type: text
+              label: $value.title
+            - type: text
+              label: $value.link
           children:
             - $formkit: text
               name: title  
@@ -212,6 +231,8 @@ spec:
         - $formkit: attachment
           name: left_section
           label: 左侧图
+          width: "15rem"
+          aspectRatio: "16/9"
           value: /themes/theme-material/assets/img/avatar.png
         - $formkit: code
           name: copyright_html
@@ -219,10 +240,15 @@ spec:
           height: 100px
           language: html
           value: Copyright&nbsp;© <span id="footer-copyright-year">2024</span> moony.la
-        - $formkit: repeater
+        - $formkit: array
           name: sfooter_info
           label: 社交媒体
           value: [ ]
+          itemLabels:
+            - type: text
+              label: $value.sf_title
+            - type: text
+              label: $value.sf_link
           children:
             - $formkit: text
               name: sf_title  
